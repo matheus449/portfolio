@@ -102,7 +102,7 @@ export default function App() {
           <div className="wrap split">
             <p className="index">01 — Perfil</p>
             <div className="portrait">
-              <img src="./logo-mo.png" alt="" />
+              <img src="./matheus-profile.jpeg" alt="Matheus Oliveira" loading="lazy" />
             </div>
             <div>
               <h2>
