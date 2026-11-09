@@ -5,32 +5,18 @@ import { RadialScrollGallery } from './components/RadialScrollGallery';
 
 const PROJECTS = [
   {
-    title: 'Dashboard SaaS',
-    description: 'Plataforma de gestão com analytics em tempo real.',
-    href: 'https://seu-site-1.vercel.app',
-    code: 'https://github.com/seunome/dashboard',
-    image: './work/dashboard.jpg',
+    title: 'Organiza-Me',
+    description: 'Organize sua rotina com leveza e acompanhe suas tarefas do dia.',
+    href: 'https://organizame-pi.vercel.app/#inicio',
+    code: 'https://github.com/matheus449/organizame',
+    image: './work/organizame-cover.webp',
   },
   {
-    title: 'E-commerce AUREN',
-    description: 'Loja online com design editorial e checkout direto.',
-    href: 'https://seu-site-2.vercel.app',
-    code: 'https://github.com/seunome/auren',
-    image: './work/ecommerce.jpg',
-  },
-  {
-    title: 'App de Produtividade',
-    description: 'Aplicativo focado em tarefas e sessões de foco.',
-    href: 'https://seu-site-3.vercel.app',
-    code: 'https://github.com/seunome/foco',
-    image: './work/mobile.jpg',
-  },
-  {
-    title: 'Portfolio Editorial',
-    description: 'Site pessoal com tipografia grande e ritmo de revista.',
-    href: 'https://seu-site-4.vercel.app',
-    code: 'https://github.com/seunome/editorial',
-    image: './work/portfolio.jpg',
+    title: 'OVERCLOCKED',
+    description: 'Simulador de TI para explorar a rotina de suporte em uma empresa.',
+    href: 'https://over-clocked-phi.vercel.app/',
+    code: 'https://github.com/matheus449/OverClockedII',
+    image: './work/overclocked-cover.webp',
   },
 ];
 
@@ -90,10 +76,10 @@ export default function App() {
         <div className="ticker" aria-hidden="true">
           <div className="ticker-track">
             <span>
-              Dashboard · E-commerce · App mobile · Editorial · React · TypeScript ·{' '}
+              Organiza-Me · OVERCLOCKED · React · TypeScript ·{' '}
             </span>
             <span>
-              Dashboard · E-commerce · App mobile · Editorial · React · TypeScript ·{' '}
+              Organiza-Me · OVERCLOCKED · React · TypeScript ·{' '}
             </span>
           </div>
         </div>
@@ -137,9 +123,9 @@ export default function App() {
           <div className="wrap">
             <p className="index">02 — Galeria</p>
             <h2>
-              Potret
+              Projetos
               <br />
-              <em>dos projetos</em>
+              <em>em destaque</em>
             </h2>
             <p className="hint">Role para girar a roda.</p>
           </div>
@@ -168,7 +154,7 @@ export default function App() {
                   >
                     <img
                       src={item.image}
-                      alt=""
+                      alt={item.title}
                       className={`h-full w-full object-cover transition-transform duration-700 ease-out ${
                         isHovered ? 'scale-110' : 'scale-100'
                       }`}
