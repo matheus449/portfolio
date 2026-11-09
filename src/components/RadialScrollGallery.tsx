@@ -31,7 +31,11 @@ function mergeRefs<T>(...refs: Array<React.Ref<T> | undefined>) {
 }
 
 function useResponsiveRadius(baseRadius: number, mobileRadius: number) {
-  const [radius, setRadius] = useState(baseRadius);
+  const [radius, setRadius] = useState(() =>
+    typeof window !== 'undefined' && window.innerWidth < 768
+      ? mobileRadius
+      : baseRadius
+  );
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -116,15 +120,13 @@ export const RadialScrollGallery = forwardRef<
       setMounted(true);
       if (!firstItemRef.current) return;
       const ro = new ResizeObserver((entries) => {
-        let changed = false;
         for (const entry of entries) {
           setItemSize({
             w: entry.contentRect.width,
             h: entry.contentRect.height,
           });
-          changed = true;
         }
-        if (changed) ScrollTrigger.refresh();
+        // Refresh after React commits the measured stage dimensions.
       });
       ro.observe(firstItemRef.current);
       return () => ro.disconnect();
@@ -132,7 +134,7 @@ export const RadialScrollGallery = forwardRef<
 
     useGSAP(
       () => {
-        if (!containerRef.current || !listRef.current || total === 0) return;
+        if (!containerRef.current || !listRef.current || total === 0 || !itemSize) return;
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
           return;
         }
@@ -167,9 +169,15 @@ export const RadialScrollGallery = forwardRef<
       },
       {
         scope: containerRef,
-        dependencies: [scrollDuration, radius, startTrigger, total],
+        dependencies: [scrollDuration, radius, startTrigger, total, itemSize?.w, itemSize?.h],
+        revertOnUpdate: true,
       }
     );
+
+    useEffect(() => {
+      const frame = requestAnimationFrame(() => ScrollTrigger.refresh());
+      return () => cancelAnimationFrame(frame);
+    }, [radius, itemSize?.w, itemSize?.h]);
 
     if (total === 0) return null;
 
