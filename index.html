@@ -37,6 +37,49 @@
         }
       }, 600);
     </script>
+  <style id="responsive-layout">
+/* Responsive layout: preserve the existing sections and visual identity. */
+.nav { height: auto; min-height: 3.5rem; gap: .75rem; flex-wrap: wrap; padding-block: .4rem; }
+.nav .logo { flex-shrink: 0; }
+.nav nav { display: flex; flex-wrap: wrap; }
+.nav nav a { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+.hero { box-sizing: border-box; min-height: calc(100svh - 3.5rem); }
+.glass-mark { max-width: 100%; }
+.split { grid-template-columns: minmax(0, 16rem) minmax(0, 1fr); }
+.split > *, .facts > *, .links > * { min-width: 0; }
+.sheet h2, .contact h2, .lede, .facts dd { overflow-wrap: anywhere; }
+#perfil, #galeria, #contato { scroll-margin-top: 6rem; }
+@media (max-width: 900px) {
+  .split { gap: 2rem; grid-template-columns: minmax(0, 12rem) minmax(0, 1fr); }
+  .facts { gap: 1rem; }
+}
+@media (max-width: 760px) {
+  .nav { padding-inline: clamp(.5rem, 3vw, 1.5rem); }
+  .nav nav { display: flex; gap: .35rem; }
+  .nav nav a { padding: .4rem .65rem; font-size: .8125rem; }
+  .wrap { width: calc(100% - 2rem); }
+  .split { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .portrait { width: min(16rem, 100%); box-sizing: border-box; }
+  .sheet { padding-block: 3.5rem; }
+  .sheet h2, .contact h2 { font-size: clamp(2rem, 8vw, 3.5rem); }
+  .hero { padding: 2rem 1rem; }
+  .glass-mark { width: 100%; height: min(24rem, 45svh); }
+  .contact { padding: 4rem 0; }
+  .links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .links a { padding: 1rem .5rem; }
+  .links a:nth-child(odd) { border-right: 1px solid #f4f6fa38; }
+  .links a:nth-last-child(-n+2) { border-bottom: 0; }
+}
+@media (max-width: 360px) {
+  .nav { gap: .4rem; }
+  .nav nav a { padding-inline: .5rem; }
+  .hero h1 { font-size: clamp(2rem, 13vw, 3rem); }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero { padding-block: 1.5rem; }
+  .glass-mark { height: 45svh; }
+}
+</style>
   </head>
   <body>
     <div id="root"></div>
